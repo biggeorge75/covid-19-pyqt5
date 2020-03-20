@@ -1,7 +1,6 @@
-**Python PYQT5**
+**Covid-19 Statisztika - Python PYQT5**
 
 pip install covid
-
 [covid info](https://ahmednafies.github.io/covid/examples/)
 
 
