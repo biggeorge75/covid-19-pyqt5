@@ -201,18 +201,21 @@ class Ui_Form(object):
         self.time.setText(time + 90*' ' + " © ßiggeorge 2020")
 
     def resultCountries(self):
-        self.cur = self.comboBox.currentText()
+        try:
+            self.cur = self.comboBox.currentText()
+            self.curCovid = self.covid.get_status_by_country_name(self.cur)
 
-        self.curCovid = self.covid.get_status_by_country_name(self.cur)
+            self.orszConfirmed = self.curCovid["confirmed"]
+            self.orszRecovered = self.curCovid["recovered"]
+            self.orszDeaths = self.curCovid["deaths"]
 
-        self.orszConfirmed = self.curCovid["confirmed"]
-        self.orszRecovered = self.curCovid["recovered"]
-        self.orszDeaths = self.curCovid["deaths"]
-
-        self.orsz_fert_val.setText(str(self.orszConfirmed))
-        self.orsz_gyogy_val.setText(str(self.orszRecovered))
-        self.orsz_elh_val.setText(str(self.orszDeaths))
-
+            self.orsz_fert_val.setText(str(self.orszConfirmed))
+            self.orsz_gyogy_val.setText(str(self.orszRecovered))
+            self.orsz_elh_val.setText(str(self.orszDeaths))
+            if self.comboBox.currentTextChanged:
+                self.orsz_valasztasa.setText("ország választása")
+        except:
+            self.orsz_valasztasa.setText("Hiba!!!")
 ######################################################################################################################
 ######################################################################################################################
 
