@@ -169,7 +169,6 @@ class Ui_Form(object):
 
 ######################################################################################################################
 ######################################################################################################################
-
         self.covid = Covid()
 
         self.confirmed = self.covid.get_total_confirmed_cases()
@@ -178,7 +177,6 @@ class Ui_Form(object):
 
         countries = self.covid.list_countries()
         self.countries_list = []
-
 
         for i in countries:
             self.countries_list.append(i["name"])
@@ -218,7 +216,6 @@ class Ui_Form(object):
             self.orsz_valasztasa.setText("Hiba!!!")
 ######################################################################################################################
 ######################################################################################################################
-
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Covid-19 Statisztika"))
