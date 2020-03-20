@@ -191,8 +191,6 @@ class Ui_Form(object):
         self.comboBox.addItems(self.countries_list)
         self.comboBox.setCurrentText(self.countries_list[68])
 
-        self.orsz_fert_val.setText("10")
-
         self.resultCountries()
         self.comboBox.currentTextChanged.connect(self.resultCountries)
 
