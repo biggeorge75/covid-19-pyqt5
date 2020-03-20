@@ -198,7 +198,7 @@ class Ui_Form(object):
         self.comboBox.currentTextChanged.connect(self.resultCountries)
 
         time = strftime("%Y-%m-%d")
-        self.time.setText(time)
+        self.time.setText(time + 90*' ' + " © ßiggeorge 2020")
 
     def resultCountries(self):
         self.cur = self.comboBox.currentText()
