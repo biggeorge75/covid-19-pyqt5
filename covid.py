@@ -189,7 +189,10 @@ class Ui_Form(object):
         self.ossz_elh_val.setText(str(self.deaths))
 
         self.comboBox.addItems(self.countries_list)
-        self.comboBox.setCurrentText(self.countries_list[68])
+        
+        # megnyitáskor Hungary a kiválasztott 
+        self.Hungary = self.covid.get_status_by_country_name("Hungary")
+        self.comboBox.setCurrentText(str(self.Hungary))
 
         self.resultCountries()
         self.comboBox.currentTextChanged.connect(self.resultCountries)
