@@ -192,7 +192,7 @@ class Ui_Form(object):
         
         # megnyitáskor Hungary a kiválasztott 
         Hungary = self.covid.get_status_by_country_name("Hungary")
-        self.comboBox.setCurrentText(str(Hungary))
+        self.comboBox.setCurrentText(str(Hungary["country"]))
 
         self.resultCountries()
         self.comboBox.currentTextChanged.connect(self.resultCountries)
