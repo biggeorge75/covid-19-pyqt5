@@ -41,8 +41,6 @@ class Ui_Form(object):
         self.comboBox.setStyleSheet("padding: 3px;\n"
                                     "color: rgb(255, 255, 255);")
         self.comboBox.setObjectName("comboBox")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
         self.gridLayout.addWidget(self.comboBox, 8, 0, 3, 2)
         self.orsz_elh_val = QtWidgets.QLabel(Form)
         font = QtGui.QFont()
@@ -227,8 +225,6 @@ class Ui_Form(object):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Covid-19 Statisztika"))
         self.orsz_fert.setText(_translate("Form", "Fertőzöttek"))
-        self.comboBox.setItemText(0, _translate("Form", "Hungary"))
-        self.comboBox.setItemText(1, _translate("Form", "ovsfovsnfvsv betbsetbrsbrtnb"))
         self.orsz_elh_val.setText(_translate("Form", "0"))
         self.orsz_fert_val.setText(_translate("Form", "0"))
         self.label.setAccessibleDescription(_translate("Form", "0"))
