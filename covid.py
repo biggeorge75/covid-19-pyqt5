@@ -1,6 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from time import strftime
 from covid import Covid
+from datetime import datetime
 
 
 class Ui_Form(object):
@@ -169,6 +170,7 @@ class Ui_Form(object):
 
 ######################################################################################################################
 ######################################################################################################################
+
         self.covid = Covid()
 
         self.confirmed = self.covid.get_total_confirmed_cases()
@@ -181,22 +183,20 @@ class Ui_Form(object):
         for i in countries:
             self.countries_list.append(i["name"])
         self.countries_list.sort()
+        print(self.covid.get_data())
 
         self.ossz_fert_val.setText(str(self.confirmed))
         self.ossz_gyogy_val.setText(str(self.recovered))
         self.ossz_elh_val.setText(str(self.deaths))
 
         self.comboBox.addItems(self.countries_list)
-        
-        # megnyitáskor Hungary a kiválasztott 
+
         Hungary = self.covid.get_status_by_country_name("Hungary")
         self.comboBox.setCurrentText(str(Hungary["country"]))
 
         self.resultCountries()
         self.comboBox.currentTextChanged.connect(self.resultCountries)
 
-        time = strftime("%Y-%m-%d")
-        self.time.setText(time + 90*' ' + " © ßiggeorge 2020")
 
     def resultCountries(self):
         try:
@@ -206,16 +206,24 @@ class Ui_Form(object):
             self.orszConfirmed = self.curCovid["confirmed"]
             self.orszRecovered = self.curCovid["recovered"]
             self.orszDeaths = self.curCovid["deaths"]
+            self.lastUpdate = self.curCovid["last_update"]
 
             self.orsz_fert_val.setText(str(self.orszConfirmed))
             self.orsz_gyogy_val.setText(str(self.orszRecovered))
             self.orsz_elh_val.setText(str(self.orszDeaths))
+
+            update = self.lastUpdate
+            your_dt = datetime.fromtimestamp(int(update) / 1000)
             if self.comboBox.currentTextChanged:
                 self.orsz_valasztasa.setText("ország választása")
+                self.time.setText(str(your_dt.strftime("%Y-%m-%d %H:%M")) + 95*' ' + "ßiggeorge 2020")
         except:
             self.orsz_valasztasa.setText("Hiba!!!")
+            self.time.setText("Hiba!!!")
+
 ######################################################################################################################
 ######################################################################################################################
+
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Covid-19 Statisztika"))
