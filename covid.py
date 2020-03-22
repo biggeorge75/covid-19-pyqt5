@@ -2,6 +2,10 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from covid import Covid
 from datetime import datetime
 
+import requests
+from bs4 import BeautifulSoup
+
+
 
 class Ui_Form(object):
     def setupUi(self, Form):
@@ -165,6 +169,8 @@ class Ui_Form(object):
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
+        self.data()
+
 ###################################################################################################################
 ###################################################################################################################
 
@@ -210,13 +216,39 @@ class Ui_Form(object):
             update = self.lastUpdate
             your_dt = datetime.fromtimestamp(int(update) / 1000)
             if self.comboBox.currentTextChanged:
+                if self.comboBox.currentText() == "Hungary":
+                    self.orsz_fert_val.setText(str(self.confirmedH_adat))
+                    self.orsz_gyogy_val.setText(str(self.recoveredH_adat))
+                    self.orsz_elh_val.setText(str(self.deathsH_adat))
+
+                    print(self.updateH_adat)
+
                 self.orsz_valasztasa.setText("ország választása")
                 self.time.setText(str(your_dt.strftime(self.comboBox.currentText()+" frissítve: " + "%Y-%m-%d %H:%M")))
+
         except:
             self.time.setText("Az adatokat nem sikerült lekérdezni!")
             self.orsz_fert_val.setText(str(''))
             self.orsz_gyogy_val.setText(str(''))
             self.orsz_elh_val.setText(str(''))
+
+    def data(self):
+        self.url = f"https://koronavirus.gov.hu/"
+
+        self.response = requests.get(self.url, "lxml")
+        self.soup = BeautifulSoup(self.response.content, 'html.parser')
+        self.confirmedH = self.soup.select(".number")[0]
+        self.confirmedH_adat = self.confirmedH.text
+        self.recoveredH = self.soup.select(".number")[1]
+        self.recoveredH_adat = self.recoveredH.text
+        self.deathsH = self.soup.select(".number")[2]
+        self.deathsH_adat = self.deathsH.text
+        self.mintavH = self.soup.select(".number")[4]
+        self.mintavH_adat = self.mintavH.text
+        self.updateH = self.soup.select(".well-lg > p")[0]
+        self.updateH_adat = self.updateH.text
+
+
 
 ###################################################################################################################
 ###################################################################################################################
