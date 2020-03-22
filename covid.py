@@ -1,9 +1,8 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from covid import Covid
 from datetime import datetime
-
-import requests
 from bs4 import BeautifulSoup
+import requests
 
 
 class Ui_Form(object):
@@ -167,10 +166,7 @@ class Ui_Form(object):
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
-
-        ###################################################################################################################
-        ###################################################################################################################
-
+#######################################################################################################################
         self.data()
 
         self.covid = Covid()
@@ -227,7 +223,6 @@ class Ui_Form(object):
                 else:
                     self.time.setText(
                         str(your_dt.strftime(self.comboBox.currentText() + " frissítve: " + "%Y-%m-%d %H:%M")))
-
         except:
             self.time.setText("Az adatokat nem sikerült lekérdezni!")
             self.orsz_fert_val.setText(str(''))
@@ -249,10 +244,7 @@ class Ui_Form(object):
         self.mintavH_adat = self.mintavH.text
         self.updateH = self.soup.select(".well-lg > p")[0]
         self.updateH_adat = self.updateH.text
-
-    ###################################################################################################################
-    ###################################################################################################################
-
+#######################################################################################################################
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Covid-19 Statisztika"))
