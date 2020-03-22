@@ -1,5 +1,4 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-from time import strftime
 from covid import Covid
 from datetime import datetime
 
@@ -183,7 +182,6 @@ class Ui_Form(object):
         for i in countries:
             self.countries_list.append(i["name"])
         self.countries_list.sort()
-        print(self.covid.get_data())
 
         self.ossz_fert_val.setText(str(self.confirmed))
         self.ossz_gyogy_val.setText(str(self.recovered))
