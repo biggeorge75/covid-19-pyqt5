@@ -40,7 +40,7 @@ class Ui_Form(object):
         font.setPointSize(12)
         self.comboBox.setFont(font)
         self.comboBox.setStyleSheet("padding: 3px;\n"
-"color: rgb(255, 255, 255);")
+                                    "color: rgb(255, 255, 255);")
         self.comboBox.setObjectName("comboBox")
         self.comboBox.addItem("")
         self.comboBox.addItem("")
@@ -65,7 +65,7 @@ class Ui_Form(object):
         self.label.setFont(font)
         self.label.setCursor(QtGui.QCursor(QtCore.Qt.CrossCursor))
         self.label.setStyleSheet("margin-left: 15px;\n"
-"margin-top: 5px;")
+                                 "margin-top: 5px;")
         self.label.setText("")
         self.label.setPixmap(QtGui.QPixmap("covid-19.png"))
         self.label.setObjectName("label")
@@ -168,8 +168,8 @@ class Ui_Form(object):
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
-######################################################################################################################
-######################################################################################################################
+###################################################################################################################
+###################################################################################################################
 
         self.covid = Covid()
 
@@ -197,7 +197,6 @@ class Ui_Form(object):
         self.resultCountries()
         self.comboBox.currentTextChanged.connect(self.resultCountries)
 
-
     def resultCountries(self):
         try:
             self.cur = self.comboBox.currentText()
@@ -216,13 +215,15 @@ class Ui_Form(object):
             your_dt = datetime.fromtimestamp(int(update) / 1000)
             if self.comboBox.currentTextChanged:
                 self.orsz_valasztasa.setText("ország választása")
-                self.time.setText(str(your_dt.strftime("%Y-%m-%d %H:%M")) + 95*' ' + "ßiggeorge 2020")
+                self.time.setText(str(your_dt.strftime("%Y-%m-%d %H:%M")) + ' - ' + "ßiggeorge 2020")
         except:
-            self.orsz_valasztasa.setText("Hiba!!!")
-            self.time.setText("Hiba!!!")
+            self.time.setText("Hiba!!!" + ' - ' + "ßiggeorge 2020")
+            self.orsz_fert_val.setText(str(''))
+            self.orsz_gyogy_val.setText(str(''))
+            self.orsz_elh_val.setText(str(''))
 
-######################################################################################################################
-######################################################################################################################
+###################################################################################################################
+###################################################################################################################
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
@@ -248,6 +249,7 @@ class Ui_Form(object):
 
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
     Form = QtWidgets.QWidget()
     ui = Ui_Form()
