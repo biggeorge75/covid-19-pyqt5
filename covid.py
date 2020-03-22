@@ -6,7 +6,6 @@ import requests
 from bs4 import BeautifulSoup
 
 
-
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
@@ -169,10 +168,10 @@ class Ui_Form(object):
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
-        self.data()
+        ###################################################################################################################
+        ###################################################################################################################
 
-###################################################################################################################
-###################################################################################################################
+        self.data()
 
         self.covid = Covid()
 
@@ -221,10 +220,13 @@ class Ui_Form(object):
                     self.orsz_gyogy_val.setText(str(self.recoveredH_adat))
                     self.orsz_elh_val.setText(str(self.deathsH_adat))
 
-                    print(self.updateH_adat)
-
                 self.orsz_valasztasa.setText("ország választása")
-                self.time.setText(str(your_dt.strftime(self.comboBox.currentText()+" frissítve: " + "%Y-%m-%d %H:%M")))
+
+                if self.comboBox.currentText() == "Hungary":
+                    self.time.setText("koronavirus.gov.hu > " + self.updateH_adat)
+                else:
+                    self.time.setText(
+                        str(your_dt.strftime(self.comboBox.currentText() + " frissítve: " + "%Y-%m-%d %H:%M")))
 
         except:
             self.time.setText("Az adatokat nem sikerült lekérdezni!")
@@ -248,10 +250,8 @@ class Ui_Form(object):
         self.updateH = self.soup.select(".well-lg > p")[0]
         self.updateH_adat = self.updateH.text
 
-
-
-###################################################################################################################
-###################################################################################################################
+    ###################################################################################################################
+    ###################################################################################################################
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
