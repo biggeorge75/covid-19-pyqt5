@@ -213,9 +213,9 @@ class Ui_Form(object):
             your_dt = datetime.fromtimestamp(int(update) / 1000)
             if self.comboBox.currentTextChanged:
                 self.orsz_valasztasa.setText("ország választása")
-                self.time.setText(str(your_dt.strftime("%Y-%m-%d %H:%M")) + ' - ' + "ßiggeorge 2020")
+                self.time.setText(str(your_dt.strftime(self.comboBox.currentText()+" frissítve: " + "%Y-%m-%d %H:%M")))
         except:
-            self.time.setText("Hiba!!!" + ' - ' + "ßiggeorge 2020")
+            self.time.setText("Az adatokat nem sikerült lekérdezni!")
             self.orsz_fert_val.setText(str(''))
             self.orsz_gyogy_val.setText(str(''))
             self.orsz_elh_val.setText(str(''))
