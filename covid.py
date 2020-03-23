@@ -224,7 +224,7 @@ class Ui_Form(object):
                     self.time.setText(
                         str(your_dt.strftime(self.comboBox.currentText() + " frissítve: " + "%Y-%m-%d %H:%M")))
         except:
-            self.time.setText("Az adatokat nem sikerült lekérdezni!")
+            self.time.setText(self.comboBox.currentText() + " adatait nem sikerült lekérdezni!")
             self.orsz_fert_val.setText(str(''))
             self.orsz_gyogy_val.setText(str(''))
             self.orsz_elh_val.setText(str(''))
